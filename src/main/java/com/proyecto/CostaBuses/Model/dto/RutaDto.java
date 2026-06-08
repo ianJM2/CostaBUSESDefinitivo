@@ -1,35 +1,27 @@
-package com.proyecto.CostaBuses.Model;
+package com.proyecto.CostaBuses.Model.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-@Table(name="tb-Rutas")
-public class Ruta
+public class RutaDto
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @NotBlank(message = "El codigo no puede quedar vacio")
     private String codigo;
+    @NotBlank(message = "El origen no puede quedar vacio")
     private String origen;
+    @NotBlank(message = "El destino no puede quedar vacio")
     private String destino;
 
-    public Ruta()
+
+
+    public RutaDto()
     {
+
     }
 
-    public Ruta(Integer id, String codigo, String origen, String destino) {
-        this.id = id;
+    public RutaDto(String codigo, String origen, String destino) {
         this.codigo = codigo;
         this.origen = origen;
         this.destino = destino;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getCodigo() {
@@ -56,5 +48,3 @@ public class Ruta
         this.destino = destino;
     }
 }
-
-

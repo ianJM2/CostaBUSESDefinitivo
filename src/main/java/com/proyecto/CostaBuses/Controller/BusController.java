@@ -19,8 +19,8 @@ public class BusController
 
     @GetMapping("/all")
     public ResponseEntity<List<?>> findAll() {
-        List<Bus> spaces = busService.findAll();
-        if (spaces.isEmpty()) {
+        List<Bus> bus = busService.findAll();
+        if (bus.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(busService.findAll());

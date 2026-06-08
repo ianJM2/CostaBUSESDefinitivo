@@ -13,20 +13,18 @@ public class BusDto
     private Integer capacidad;
     @NotBlank(message = "necesitamos un conductor")
     private String conductor;
+    private String codigoDeRuta;
 
-    public BusDto()
-    {
-
+    public BusDto() {
     }
 
-    public BusDto(String placa, String modelo, Integer capacidad, String conductor) {
-
+    public BusDto(String placa, String modelo, Integer capacidad, String conductor, String codigoDeRuta) {
         this.placa = placa;
         this.modelo = modelo;
         this.capacidad = capacidad;
         this.conductor = conductor;
+        this.codigoDeRuta = codigoDeRuta;
     }
-
 
     public String getPlaca() {
         return placa;
@@ -58,5 +56,13 @@ public class BusDto
 
     public void setConductor(String conductor) {
         this.conductor = conductor;
+    }
+
+    public String getCodigoDeRuta() {
+        return codigoDeRuta;
+    }
+
+    public void setCodigoDeRuta(String codigoDeRuta) {
+        this.codigoDeRuta = codigoDeRuta;
     }
 }

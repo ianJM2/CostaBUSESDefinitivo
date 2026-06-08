@@ -1,6 +1,7 @@
 package com.proyecto.CostaBuses.Service;
 
 import com.proyecto.CostaBuses.Model.Bus;
+import com.proyecto.CostaBuses.Model.Ruta;
 import com.proyecto.CostaBuses.Model.Usuario;
 import com.proyecto.CostaBuses.Model.dto.BusDto;
 import com.proyecto.CostaBuses.Repository.BusJpaRepository;
@@ -15,6 +16,9 @@ public class BusService {
     @Autowired
     private BusJpaRepository busJpaRepository;
 
+    @Autowired
+    private RutaService rutaService;
+
     public List<Bus> findAll() {
         return busJpaRepository.findAll();
     }
@@ -28,15 +32,19 @@ public class BusService {
 
     public Bus add(BusDto busDto) {
         Optional<Bus> busExist = busJpaRepository.findByPlaca(busDto.getPlaca());
+        Ruta ruta= rutaService.getByCodigo(busDto.getCodigoDeRuta());
         if (busExist.isPresent()) {
             return null;
         } else {
-            if (busDto.getCapacidad() == null || busDto.getConductor() == null || busDto.getModelo() == null ) {
+            if (busDto.getCapacidad() == null || busDto.getConductor() == null || busDto.getModelo() == null || busDto.getCodigoDeRuta() == null ) {
                 return null;
             }
         }
 
+
+
         Bus busTemp = new Bus();
+        busTemp.setRuta(ruta);
         busTemp.setPlaca(busDto.getPlaca());
         busTemp.setModelo(busDto.getModelo());
         busTemp.setCapacidad(busDto.getCapacidad());
@@ -48,6 +56,7 @@ public class BusService {
 
     public Bus update(BusDto bus) {
         Optional<Bus> busExits = busJpaRepository.findByPlaca(bus.getPlaca());
+        Ruta ruta= rutaService.getByCodigo(bus.getCodigoDeRuta());
 
         if (busExits.isPresent()) {
             Bus busN = busExits.get();
@@ -64,6 +73,10 @@ public class BusService {
             if (bus.getPlaca() !=null)
             {
                 busN.setPlaca(bus.getPlaca());
+            }
+            if (bus.getCodigoDeRuta() != null)
+            {
+                busN.setRuta(ruta);
             }
 
             return busJpaRepository.save(busN);

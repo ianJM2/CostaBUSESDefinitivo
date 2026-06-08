@@ -13,18 +13,22 @@ public class Bus
     private String modelo;
     private Integer capacidad;
     private String conductor;
+    @ManyToOne
+    @JoinColumn(name = "Ruta_code")
+    private Ruta ruta;
 
     public Bus()
     {
 
     }
 
-    public Bus(Integer id, String placa, String modelo, Integer capacidad, String conductor) {
+    public Bus(Integer id, String placa, String modelo, Integer capacidad, String conductor, Ruta ruta) {
         this.id = id;
         this.placa = placa;
         this.modelo = modelo;
         this.capacidad = capacidad;
         this.conductor = conductor;
+        this.ruta = ruta;
     }
 
     public Integer getId() {
@@ -65,5 +69,13 @@ public class Bus
 
     public void setConductor(String conductor) {
         this.conductor = conductor;
+    }
+
+    public Ruta getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(Ruta ruta) {
+        this.ruta = ruta;
     }
 }
