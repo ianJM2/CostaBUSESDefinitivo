@@ -9,6 +9,7 @@ public class Parada
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String nombre;
     private String ubicacion;
     private String seguridad;
 
@@ -17,8 +18,9 @@ public class Parada
 
     }
 
-    public Parada(Integer id, String ubicacion, String seguridad) {
+    public Parada(Integer id, String nombre, String ubicacion, String seguridad) {
         this.id = id;
+        this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.seguridad = seguridad;
     }
@@ -29,6 +31,14 @@ public class Parada
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getUbicacion() {
